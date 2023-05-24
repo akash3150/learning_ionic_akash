@@ -1,0 +1,71 @@
+<!-- <ion-tabs>
+
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="tab1">
+      <ion-icon aria-hidden="true" name="triangle"></ion-icon>
+      <ion-label>Gallary</ion-label>
+    </ion-tab-button>
+ 
+    <ion-tab-button tab="tab2">
+      <ion-icon aria-hidden="true" name="ellipse"></ion-icon>
+      <ion-label>Tab 2</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="tab3">
+      <ion-icon aria-hidden="true" name="square"></ion-icon>
+      <ion-label>Tab 3</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+
+</ion-tabs> -->
+<div>
+  <div class="text">
+    <p class="heading">Hey There,</p>
+    <p class="subheading">Welcome Back</p>
+  </div>
+  <div class="pad">
+    <form novalidate offset-lg-3 offset-xl-4 col-lg-6 col-xl-4 [formGroup]="signupForm" (ngSubmit)="submitForm()">
+      <ion-list>
+        <p style="font-weight: 500;font-size: larger;">Email</p>
+        <ion-item>
+          <button style="background: transparent; margin-right: 10px; " ion-button clear item-start icon-only>
+            <ion-icon name="mail-outline"></ion-icon>
+          </button>
+          <ion-input placeholder="Enter Email" name="email" type="text" formControlName="email"> </ion-input>
+
+        </ion-item>
+      </ion-list>
+
+      <ion-list>
+        <p style="font-weight: 500;font-size: larger;">Password</p>
+        <ion-item>
+          <button style="background: transparent; margin-right: 10px;" ion-button clear item-start icon-only>
+            <ion-icon slot="start" name="lock-closed-outline"></ion-icon>
+          </button>
+          <ion-input placeholder="Enter Password" maxlength="12" formControlName="password" name="password"
+            type="password">
+          </ion-input>
+
+        </ion-item>
+      </ion-list>
+      <div class="text-forgot">
+        <p> <span (click)="go('/tabs1')"> Forgot Password?</span></p>
+      </div>
+      <div class="text-mobile">
+        <p><span (click)="go('/tabs2')">Login Using Mobile No.</span></p>
+      </div>
+      <button class="btn" type="submit">
+        Login
+      </button>
+      <div class="d-flex">
+        <ion-img (click)="signIn()"
+          src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/2008px-Google_%22G%22_Logo.svg.png"></ion-img>
+        <ion-img
+          src="https://upload.wikimedia.org/wikipedia/en/thumb/0/04/Facebook_f_logo_%282021%29.svg/1200px-Facebook_f_logo_%282021%29.svg.png"></ion-img>
+      </div>
+      <div class="d-flex">
+        <span class="textdont">Don't have an account yet? &nbsp; </span> <span class="text-mobile">Sign Up</span>
+      </div>
+    </form>
+  </div>
+</div>

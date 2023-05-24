@@ -1,0 +1,111 @@
+<div id="main-content">
+  <div class="icon-one">
+    <ion-fab slot="fixed" vertical="top" horizontal="start">
+      <ion-fab-button>
+        <ion-menu-toggle>
+          <ion-icon name="reorder-three-outline"></ion-icon>
+        </ion-menu-toggle>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+  <div class="icon-two">
+    <ion-fab slot="fixed" vertical="top" horizontal="end">
+      <ion-fab-button>
+        <ion-icon name="notifications"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </div>
+
+  <capacitor-google-map #map></capacitor-google-map>
+
+  <div class="main">
+    <span class="paddd">Where to go ?</span>
+  </div>
+
+</div>
+
+<ion-menu contentId="main-content">
+
+  <ion-content class="ion-padding">
+    <div>
+      <div class="head">
+        <div class="d-flex">
+          <ion-avatar slot="start">
+            <ion-img src="assets/flags/img/ad.png"></ion-img>
+          </ion-avatar>
+          <h2 class="ms-2">Akash</h2>
+        </div>
+        <div>
+          <p>email@gmail.com</p>
+        </div>
+      </div>
+      <div class="footer">
+        <ion-list>
+          <ion-item>
+
+            <ion-icon name="timer-outline"></ion-icon>
+            <ion-label class="ms-2" (click)="openItem()">
+              <h2>History</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+          <ion-item>
+
+            <ion-icon name="help-circle-outline"></ion-icon>
+            <ion-label class="ms-2">
+              <h2>Help</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+          <ion-item>
+
+            <ion-icon name="settings-outline"></ion-icon>
+            <ion-label class="ms-2">
+              <h2>Settings</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+          <ion-item>
+
+            <ion-icon name="chatbubbles-outline"></ion-icon>
+            <ion-label class="ms-2">
+              <h2>Inbox</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+          <ion-item>
+
+            <ion-icon name="heart-outline"></ion-icon>
+            <ion-label class="ms-2">
+              <h2>Fovourite Drivers</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+          <ion-item>
+
+            <ion-icon name="log-out-outline"></ion-icon>
+            <ion-label class="ms-2" id="open-modal" expand="block">
+              <h2>SignOut</h2>
+            </ion-label>
+            <ion-icon name="chevron-forward-outline" position="end"></ion-icon>
+          </ion-item>
+
+
+        </ion-list>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-menu>
+
+<ion-modal #modal trigger="open-modal">
+  <ng-template>
+    <ion-content class="padding">
+      <h2 style="text-align: center; margin-top: 50px;">Are you sure you want to Logout?</h2>
+      <div class="d-flex mt-3 ">
+        <ion-button (click)="modal.dismiss()">Cancel</ion-button>
+        <ion-button style="margin-left: 15px;" (click)="go();modal.dismiss()">Confirm</ion-button>
+      </div>
+    </ion-content>
+  </ng-template>
+</ion-modal>
