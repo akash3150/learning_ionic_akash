@@ -9,12 +9,12 @@ export class NotificationsService {
   constructor() { }
 
   initPush() {
-    console.log('herer');
 
     if (Capacitor.getPlatform() !== 'web') {
       this.registerPush();
     }
   }
+
   private registerPush() {
     PushNotifications.requestPermissions().then(permission => {
       if (permission.receive === 'granted') {
@@ -24,12 +24,18 @@ export class NotificationsService {
         // If permission is not granted
       }
     });
+
+    //getting the fcm token by this event lisner
     PushNotifications.addListener('registration', (token) => {
       console.log('token here', JSON.stringify(token));
     });
+
+    //if some err while registration
     PushNotifications.addListener('registrationError', (err) => {
       console.log(err);
     });
+
+    //when the push notification recieved by firebase
     PushNotifications.addListener('pushNotificationReceived', (notifications) => {
       console.log('recieved', JSON.stringify(notifications));
     });

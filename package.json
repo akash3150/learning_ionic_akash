@@ -23,6 +23,7 @@
     "@angular/router": "^16.0.0",
     "@awesome-cordova-plugins/core": "^6.3.0",
     "@awesome-cordova-plugins/lottie-splash-screen": "^6.3.0",
+    "@capacitor-community/facebook-login": "^5.0.0",
     "@capacitor/android": "5.0.4",
     "@capacitor/app": "5.0.2",
     "@capacitor/camera": "^5.0.2",

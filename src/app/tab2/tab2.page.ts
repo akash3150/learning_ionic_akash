@@ -48,7 +48,7 @@ export class Tab2Page {
   }
 
   searchCountry(event: any) {
-    this.countries = this.allcountries.filter((obj: any) => obj.name.toLowerCase().indexOf(event.target.value) > -1)
+    this.countries = this.allcountries.filter((obj: any) => (obj.name).toLowerCase().indexOf((event.target.value).toLowerCase()) > -1)
   }
   onClick(country: any) {
     this.signupForm.patchValue({

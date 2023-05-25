@@ -10,6 +10,9 @@ public class MainActivity extends BridgeActivity {
 
     // Initializes the Bridge
     registerPlugin(GoogleAuth.class);
+    registerPlugin(
+      com.getcapacitor.community.facebooklogin.FacebookLogin.class
+    );
 
   }
 }

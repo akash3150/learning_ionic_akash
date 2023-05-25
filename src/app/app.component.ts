@@ -8,12 +8,17 @@ import { Device } from '@capacitor/device';
 })
 export class AppComponent {
   constructor(private push: NotificationsService) {
+    //itialize the push notification listener
     this.push.initPush();
     this.logDeviceInfo();
   }
-
+  // Taking device information like device id and other information
   logDeviceInfo = async () => {
+    //getiing device Id
     const info = await Device.getId();
-    console.log('infooooo', JSON.stringify(info));
-  };
+
+    //getting device information
+    const value = await Device.getInfo()
+    console.log('infooooo', JSON.stringify(info), JSON.stringify(value));
+  }
 }

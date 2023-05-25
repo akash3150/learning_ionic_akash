@@ -57,6 +57,7 @@ export class HomePage implements OnInit {
 
   }
   go() {
+    localStorage.removeItem('myAppToken');
     this.router.navigateByUrl('/tabs')
   }
 

@@ -1,8 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">myapp</string>
-    <string name="title_activity_main">myapp</string>
+    <string name="app_name">J Ride</string>
+    <string name="title_activity_main">J Ride</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
-  <string name="server_client_id">609712439544-77r1k1a4fo02i7kv6cuktqqmeqde48s1.apps.googleusercontent.com</string>
+    <string name="server_client_id">609712439544-77r1k1a4fo02i7kv6cuktqqmeqde48s1.apps.googleusercontent.com</string>
+    <string name="facebook_app_id">266623475747288</string>
+    <string name="facebook_client_token">8853d1c994106c29dbb1a5c8f5c7f1dd</string>
 </resources>
