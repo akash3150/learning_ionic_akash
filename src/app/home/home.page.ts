@@ -63,7 +63,7 @@ export class HomePage implements OnInit {
           lng: this.longitude,
         },
         zoom: 18,
-      },
+      }
     });
 
     /*
@@ -121,8 +121,6 @@ export class HomePage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
-      console.log(this.latitude, this.longitude);
-
       this.createMap();
       this.watchPosition()
 
