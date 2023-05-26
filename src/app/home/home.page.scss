@@ -1,4 +1,4 @@
-capacitor-google-map {
+.tx capacitor-google-map {
     display: inline-block;
     width: 100%;
     height: 60vh;
@@ -72,16 +72,16 @@ ion-modal {
     --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-ion-modal::part(backdrop) {
-    opacity: 1;
-}
+// ion-modal::part(backdrop) {
+//     opacity: 1;
+// }
 
 ion-modal ion-toolbar {
     --background: rgb(14 116 144);
     --color: white;
 }
 
-ion-content {
+.ion-content {
     --padding-top: 10px;
     --padding-bottom: 10px;
     --padding-start: 23px;

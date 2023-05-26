@@ -70,7 +70,6 @@ export class TabsPage {
       console.log(logout);
 
     }
-
   }
 
 
