@@ -11,6 +11,8 @@ import {
   FacebookLoginResponse,
 } from '@capacitor-community/facebook-login';
 import { HttpClient } from '@angular/common/http';
+import { Browser } from '@capacitor/browser';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 const FACEBOOK_PERMISSIONS = [
   'email'
@@ -39,6 +41,10 @@ export class TabsPage {
       GoogleAuth.initialize()
     };
     FacebookLogin.initialize({ appId: '266623475747288' });
+    Browser.addListener('browserFinished', () => {
+      console.log('Browser finshed');
+    });
+    this.writeFile();
   }
 
 
@@ -49,7 +55,8 @@ export class TabsPage {
       this.service.presentToast('Please Enter Password')
     } else {
       this.service.showLoading();
-      this.go('/home');
+      // this.go('/home');
+      this.openCapacitorSite();
       localStorage.setItem('myAppToken', 'user')
     }
 
@@ -95,9 +102,33 @@ export class TabsPage {
 
 
 
+  openCapacitorSite = async () => {
+    await Browser.open({ url: 'https://www.flipkart.com/' });
+  };
 
+  writeFile = async () => {
+    try {
+      let permissions = await Filesystem.requestPermissions();
+      console.log('permissions', JSON.stringify(permissions));
 
+      let data = await Filesystem.writeFile({
+        path: 'text.txt',
+        data: 'Akash is my name',
+        directory: Directory.Documents,
+        encoding: Encoding.UTF8,
+      });
+      let uri = await Filesystem.readFile({
+        path: 'text.txt'
+      });
 
+      console.log('urrrr', JSON.stringify(uri));
+
+    } catch (error: any) {
+      console.log('errror', error.message);
+
+    }
+
+  };
 
 
 }

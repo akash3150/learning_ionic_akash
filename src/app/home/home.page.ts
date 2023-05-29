@@ -6,7 +6,7 @@ import { ExploreContainerComponent } from '../explore-container/explore-containe
 import { MenuController, NavController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@capacitor/local-notifications'
-
+import { Share } from '@capacitor/share';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -69,6 +69,8 @@ export class HomePage implements OnInit {
     /*
       If you want to add marker any locations
     */
+
+
     // const markerId = await this.newMap.addMarker({
     //   coordinate: {
     //     lat: this.latitude,
@@ -81,8 +83,6 @@ export class HomePage implements OnInit {
     //   //   height: 50
     //   // }
     // });
-
-
     /*
         added current location circle or blue dot 
      */
@@ -110,7 +110,7 @@ export class HomePage implements OnInit {
   async go() {
     await this.newMap.destroy();
     localStorage.removeItem('myAppToken');
-    this.router.navigateByUrl('/tabs')
+    this.router.navigateByUrl('/tabs2')
   }
 
 
@@ -143,5 +143,19 @@ export class HomePage implements OnInit {
     this.navCtrl.navigateForward(["tabs1"]);
     this.menu.close();
   }
+
+
+  shareValue = async () => {
+    let data = await Share.canShare();
+    if (data.value) {
+      await Share.share({
+        title: 'See cool stuff',
+        text: 'Really awesome thing you need to see right meow',
+        url: 'http://ionicframework.com/',
+        dialogTitle: 'Share with buddies',
+      });
+    }
+  }
+
 
 }
