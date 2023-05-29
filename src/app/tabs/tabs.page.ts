@@ -59,7 +59,6 @@ export class TabsPage {
       this.openCapacitorSite();
       localStorage.setItem('myAppToken', 'user')
     }
-
   }
 
   go(value: string) {
@@ -125,9 +124,7 @@ export class TabsPage {
 
     } catch (error: any) {
       console.log('errror', error.message);
-
     }
-
   };
 
 
