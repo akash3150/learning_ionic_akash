@@ -1,7 +1,7 @@
 .tx capacitor-google-map {
-    display: inline-block;
+    display: block;
     width: 100%;
-    height: 60vh;
+    height: 100%;
 }
 .icon-one ion-fab {
     top: 50px !important;
@@ -31,11 +31,12 @@ ion-fab-button {
     height: 1em;
 }
 .paddd {
+    margin-top: 10px;
     padding: 10px;
     font-size: larger;
 }
 .main {
-    margin-top: 10px;
+    height: 40vh;
 }
 
 .head {
@@ -69,19 +70,18 @@ ion-modal {
     --border-radius: 16px;
     --width: 85%;
     margin: auto;
-    --box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
-// ion-modal::part(backdrop) {
-//     opacity: 1;
-// }
+ion-modal::part(backdrop) {
+    opacity: 1;
+}
 
 ion-modal ion-toolbar {
     --background: rgb(14 116 144);
     --color: white;
 }
 
-.ion-content {
+ion-content {
     --padding-top: 10px;
     --padding-bottom: 10px;
     --padding-start: 23px;
@@ -99,4 +99,16 @@ ion-button {
 .mt-3 {
     margin: auto;
     margin-top: 40px;
+}
+
+.map-show {
+    height: 60vh;
+}
+
+ion-content {
+    --background: transparent !important;
+}
+
+body {
+    background: transparent !important;
 }

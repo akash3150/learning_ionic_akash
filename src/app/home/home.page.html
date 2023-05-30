@@ -15,8 +15,10 @@
       </ion-fab-button>
     </ion-fab>
   </div>
+  <div class="map-show">
+    <capacitor-google-map #map></capacitor-google-map>
+  </div>
 
-  <capacitor-google-map #map></capacitor-google-map>
 
   <div class="main">
     <span class="paddd">Where to go ?</span>
@@ -104,7 +106,7 @@
       <h2 style="text-align: center; margin-top: 50px;">Are you sure you want to Logout?</h2>
       <div class="d-flex mt-3 ">
         <ion-button (click)="modal.dismiss()">Cancel</ion-button>
-        <ion-button style="margin-left: 15px;" (click)="go();modal.dismiss()">Confirm</ion-button>
+        <ion-button style="margin-left: 15px;" (click)="modal.dismiss(); go();">Confirm</ion-button>
       </div>
     </ion-content>
   </ng-template>

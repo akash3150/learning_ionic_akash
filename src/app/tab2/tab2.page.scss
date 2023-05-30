@@ -70,3 +70,7 @@ ion-content ion-list ion-item {
 ion-searchbar {
     --box-shadow: none !important;
 }
+
+ion-modal::part(backdrop) {
+    opacity: 0;
+}

@@ -41,7 +41,7 @@ export class PhotoService {
       message: message,
       duration: 1500,
       position: 'top',
-      color: 'dark',
+      color: 'warning',
       mode: 'ios',
       animated: true
     });

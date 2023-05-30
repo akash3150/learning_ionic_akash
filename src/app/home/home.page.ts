@@ -7,6 +7,7 @@ import { MenuController, NavController } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocalNotifications } from '@capacitor/local-notifications'
 import { Share } from '@capacitor/share';
+import { Preferences } from '@capacitor/preferences';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -18,7 +19,8 @@ export class HomePage implements OnInit {
   newMap: GoogleMap | any;
   latitude: any = 0;
   longitude: any = 0;
-  wait: any
+  wait: any;
+
   constructor(private service: PhotoService,
     private navCtrl: NavController,
     private menu: MenuController,
@@ -36,16 +38,16 @@ export class HomePage implements OnInit {
     Schedule the Local Notification 
   */
   async schedule() {
-    let data = await LocalNotifications.schedule({
-      notifications: [{
-        title: 'Alaram Baja',
-        body: 'Body chahiye',
-        id: 1,
-        schedule: {
-          every: 'second'
-        }
-      }]
-    });
+    // let data = await LocalNotifications.schedule({
+    //   notifications: [{
+    //     title: 'Alaram Baja',
+    //     body: 'Body chahiye',
+    //     id: 1,
+    //     schedule: {
+    //       every: 'second'
+    //     }
+    //   }]
+    // });
 
   }
   /*
@@ -71,18 +73,7 @@ export class HomePage implements OnInit {
     */
 
 
-    // const markerId = await this.newMap.addMarker({
-    //   coordinate: {
-    //     lat: this.latitude,
-    //     lng: this.longitude
-    //   },
-    //   draggable: false
-    //   // iconUrl: 'https://www.iconpacks.net/icons/2/free-location-pin-icon-2965-thumb.png',
-    //   // iconSize: {
-    //   //   width: 50,
-    //   //   height: 50
-    //   // }
-    // });
+
     /*
         added current location circle or blue dot 
      */
@@ -90,9 +81,26 @@ export class HomePage implements OnInit {
     /*
       Enabled the traffic layers like (traffic red blue and other color lines)
     */
-    await this.newMap.enableTrafficLayer(true);
+    await this.newMap.enableTrafficLayer(false);
 
 
+
+    // const markerId = await this.newMap.addMarkers([
+    //   {
+    //     coordinate: {
+    //       lat: this.latitude,
+    //       lng: this.longitude
+    //     },
+    //     draggable: false
+    //   },
+    //   {
+    //     coordinate: {
+    //       lat: 30.7046,
+    //       lng: 76.7179
+    //     },
+    //     draggable: false
+    //   }
+    // ]);
     // const letdata = await this.newMap.setCamera({
     //   coordinate: {
     //     lat: this.latitude,
@@ -109,8 +117,12 @@ export class HomePage implements OnInit {
 
   async go() {
     await this.newMap.destroy();
-    localStorage.removeItem('myAppToken');
+    this.menu.close();
+
+    Preferences.remove({ key: 'myAppToken' });
     this.router.navigateByUrl('/tabs2')
+
+
   }
 
 
@@ -118,6 +130,7 @@ export class HomePage implements OnInit {
     /*
       Get the current location of ur device return the lat lng
     */
+
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;

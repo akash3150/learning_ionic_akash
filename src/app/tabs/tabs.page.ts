@@ -13,6 +13,9 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { Browser } from '@capacitor/browser';
 import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Motion } from '@capacitor/motion';
+import { Network } from '@capacitor/network';
+import { Preferences } from '@capacitor/preferences';
 
 const FACEBOOK_PERMISSIONS = [
   'email'
@@ -37,6 +40,20 @@ export class TabsPage {
     private router: Router,
     private http: HttpClient
   ) {
+    /**
+     * Added orientation event for the motion
+     */
+
+    // Motion.addListener('orientation', event => {
+    //   console.log('Device motion event:', JSON.stringify(event));
+    // });
+
+    Network.addListener('networkStatusChange', status => {
+      console.log('Network status changed', JSON.stringify(status));
+    });
+
+    this.logCurrentNetworkStatus();
+
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize()
     };
@@ -44,6 +61,7 @@ export class TabsPage {
     Browser.addListener('browserFinished', () => {
       console.log('Browser finshed');
     });
+    let permissions = Filesystem.requestPermissions();
     this.writeFile();
   }
 
@@ -57,8 +75,19 @@ export class TabsPage {
       this.service.showLoading();
       // this.go('/home');
       this.openCapacitorSite();
-      localStorage.setItem('myAppToken', 'user')
+
+      this.setToken('user');
     }
+  }
+
+  /** 
+   * Set the token using preferences plugin
+  */
+  setToken(token: string): void {
+    Preferences.set({
+      key: 'myAppToken',
+      value: token
+    })
   }
 
   go(value: string) {
@@ -70,7 +99,7 @@ export class TabsPage {
     console.log('usersss', JSON.stringify(user));
     if (user) {
       this.service.presentToast('Login Successfully');
-      localStorage.setItem('myAppToken', 'user')
+      this.setToken('user');
       this.go('/home');
       let logout = await GoogleAuth.signOut();
       console.log(logout);
@@ -91,7 +120,7 @@ export class TabsPage {
     }>({ fields: ['email', 'name', 'birthday', 'picture'] });
     if (result.accessToken) {
       // Login successful.
-      localStorage.setItem('myAppToken', result.accessToken)
+      this.setToken(result.accessToken);
       this.service.presentToast('Login Successfully');
       console.log(`Facebook access token is `, JSON.stringify(result), result1);
       this.go('/home');
@@ -105,26 +134,76 @@ export class TabsPage {
     await Browser.open({ url: 'https://www.flipkart.com/' });
   };
 
+
+  /*  
+    Used to create the file and write the file....
+  */
   writeFile = async () => {
     try {
-      let permissions = await Filesystem.requestPermissions();
-      console.log('permissions', JSON.stringify(permissions));
-
       let data = await Filesystem.writeFile({
-        path: 'text.txt',
-        data: 'Akash is my name',
+        path: 'docs/text.txt',
+        data: 'I am writing the file ',
         directory: Directory.Documents,
         encoding: Encoding.UTF8,
       });
-      let uri = await Filesystem.readFile({
-        path: 'text.txt'
-      });
+      console.log(data);
+      this.readFile()
 
-      console.log('urrrr', JSON.stringify(uri));
 
     } catch (error: any) {
       console.log('errror', error.message);
     }
+  };
+
+  /*  
+    Used to read the Data in the file....
+  */
+  readFile = async () => {
+    let uri = await Filesystem.readFile({
+      path: 'docs/text.txt',
+      directory: Directory.Documents,
+    });
+
+    console.log('urrrr', JSON.stringify(uri.data));
+  }
+
+  /*  
+      Used to read the Directories....
+    */
+  readDir = async (path: string = '') => {
+    let redir = await Filesystem.readdir({
+      path: path,
+      directory: Directory.Documents
+    });
+  }
+
+
+  /*  
+      Used to remove/Delete the folder or directory
+    */
+  async removeDir(directory: string) {
+    await Filesystem.rmdir({
+      path: directory,
+      directory: Directory.Documents
+    });
+    console.log('Directory removed');
+  }
+
+  /*  
+    **Used to create the folder or directory**
+  */
+  async createFolder(folderName: string) {
+    let dir = await Filesystem.mkdir({
+      path: folderName,
+      directory: Directory.Documents
+    });
+  }
+
+
+  logCurrentNetworkStatus = async () => {
+    const status = await Network.getStatus();
+
+    console.log('Network status:', JSON.stringify(status));
   };
 
 

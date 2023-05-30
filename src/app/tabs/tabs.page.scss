@@ -72,3 +72,19 @@ ion-img {
     width: 30px !important;
     margin-right: 10px;
 }
+
+.list-ios {
+    background: none !important;
+}
+
+ion-modal::part(backdrop) {
+    opacity: 0;
+}
+
+ion-content {
+    --background: transparent !important;
+}
+
+body {
+    background: transparent !important;
+}
