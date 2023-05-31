@@ -7,16 +7,35 @@ const config: CapacitorConfig = {
   server: {
     androidScheme: 'https'
   },
-  cordova: {
-    preferences: {
-      LottieFullScreen: "true",
-      LottieHideAfterAnimationEnd: "true",
-      LottieAnimationLocation: "public/assets/splash2.json"
-    }
+  // cordova: {
+  //   preferences: {
+  //     LottieFullScreen: "true",
+  //     LottieHideAfterAnimationEnd: "true",
+  //     LottieAnimationLocation: "public/assets/splash2.json"
+  //   }
+  // },
+  ios: {
+    preferredContentMode: "mobile"
   },
   plugins: {
+    // SplashScreen: {
+    //   launchShowDuration: 0
+    // },
     SplashScreen: {
-      launchShowDuration: 0
+      launchShowDuration: 0,
+      launchAutoHide: true,
+      launchFadeOutDuration: 3000,
+      backgroundColor: "#ffffffff",
+      androidSplashResourceName: "splash",
+      androidScaleType: "CENTER_CROP",
+      showSpinner: true,
+      androidSpinnerStyle: "large",
+      iosSpinnerStyle: "small",
+      spinnerColor: "#999999",
+      splashFullScreen: true,
+      splashImmersive: true,
+      layoutName: "launch_screen",
+      useDialog: true,
     },
     PushNotifications: {
       presentationOptions: ["badge", "sound", "alert"]

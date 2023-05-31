@@ -119,7 +119,7 @@ export class HomePage implements OnInit {
     await this.newMap.destroy();
     this.menu.close();
 
-    Preferences.remove({ key: 'myAppToken' });
+    await Preferences.remove({ key: 'myAppToken' });
     this.router.navigateByUrl('/tabs2')
 
 

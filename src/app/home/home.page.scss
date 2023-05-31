@@ -2,6 +2,7 @@
     display: block;
     width: 100%;
     height: 100%;
+    background-color: transparent !important;
 }
 .icon-one ion-fab {
     top: 50px !important;
@@ -111,4 +112,14 @@ ion-content {
 
 body {
     background: transparent !important;
+}
+
+:ng-deep {
+    .gm-style-moc {
+        background-color: transparent !important;
+    }
+}
+
+.gm-style-moc {
+    background-color: transparent !important;
 }

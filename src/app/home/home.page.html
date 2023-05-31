@@ -1,29 +1,27 @@
 <div id="main-content" class="tx">
-  <div class="icon-one">
-    <ion-fab slot="fixed" vertical="top" horizontal="start">
-      <ion-fab-button>
-        <ion-menu-toggle>
-          <ion-icon name="reorder-three-outline"></ion-icon>
-        </ion-menu-toggle>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
-  <div class="icon-two">
-    <ion-fab slot="fixed" vertical="top" horizontal="end">
-      <ion-fab-button>
-        <ion-icon name="notifications"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
-  </div>
   <div class="map-show">
     <capacitor-google-map #map></capacitor-google-map>
   </div>
-
-
   <div class="main">
     <span class="paddd">Where to go ?</span>
   </div>
+</div>
 
+<div class="icon-one">
+  <ion-fab slot="fixed" vertical="top" horizontal="start">
+    <ion-fab-button>
+      <ion-menu-toggle>
+        <ion-icon name="reorder-three-outline"></ion-icon>
+      </ion-menu-toggle>
+    </ion-fab-button>
+  </ion-fab>
+</div>
+<div class="icon-two">
+  <ion-fab slot="fixed" vertical="top" horizontal="end">
+    <ion-fab-button>
+      <ion-icon name="notifications"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </div>
 
 <ion-menu contentId="main-content" class="main-content">

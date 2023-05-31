@@ -12,9 +12,9 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot) {
     let token = await Preferences.get({ key: 'myAppToken' });
-    console.log(token);
+    console.log(JSON.stringify(token), 'tokeennnnn');
 
-    if (token) {
+    if (token.value) {
       return true;
     } else {
       this.router.navigate(['/tabs']);
