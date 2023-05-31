@@ -141,8 +141,8 @@ export class TabsPage {
   };
 
 
-  /*  
-    Used to create the file and write the file....
+  /**
+   * Used to create the file and write the file....
   */
   writeFile = async () => {
     try {
@@ -161,8 +161,8 @@ export class TabsPage {
     }
   };
 
-  /*  
-    Used to read the Data in the file....
+  /**
+   * Used to read the Data in the file....
   */
   readFile = async () => {
     let uri = await Filesystem.readFile({
@@ -173,8 +173,8 @@ export class TabsPage {
     console.log('urrrr', JSON.stringify(uri.data));
   }
 
-  /*  
-      Used to read the Directories....
+  /**
+   * Used to read the Directories....
     */
   readDir = async (path: string = '') => {
     let redir = await Filesystem.readdir({
@@ -184,8 +184,8 @@ export class TabsPage {
   }
 
 
-  /*  
-      Used to remove/Delete the folder or directory
+  /**
+   * Used to remove/Delete the folder or directory
     */
   async removeDir(directory: string) {
     await Filesystem.rmdir({
@@ -195,8 +195,8 @@ export class TabsPage {
     console.log('Directory removed');
   }
 
-  /*  
-    **Used to create the folder or directory**
+  /**
+   * Used to create the folder or directory**
   */
   async createFolder(folderName: string) {
     let dir = await Filesystem.mkdir({

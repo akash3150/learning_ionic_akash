@@ -18,7 +18,9 @@ export class AppComponent {
       showDuration: 2000,
       autoHide: true,
     });
-    //itialize the push notification listener
+    /**
+     * itialize the push notification listener
+     */
     this.push.initPush();
     this.logDeviceInfo();
     this.getInfo();
@@ -40,7 +42,10 @@ export class AppComponent {
     //   console.log('Restored state:', data);
     // });
   }
-  // Taking device information like device id and other information
+
+  /** 
+   * Taking device information like device id and other information
+   */
   logDeviceInfo = async () => {
     //getiing device Id
     const info = await Device.getId();
@@ -50,8 +55,8 @@ export class AppComponent {
     console.log('infooooo', JSON.stringify(info), JSON.stringify(value));
   }
 
-  /*
-    Getting app info like build, version, name and id
+  /**
+   * Getting app info like build, version, name and id
   */
   async getInfo() {
     let data = await App.getInfo();
@@ -65,8 +70,8 @@ export class AppComponent {
     console.log('App opened with URL: ' + url);
   };
 
-  /*
-    To minimize the app using the app/Capacitor
+  /**
+   * To minimize the app using the app/Capacitor
   */
   minimizeApp = async () => {
     const minimize = await App.minimizeApp();

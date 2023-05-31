@@ -34,8 +34,8 @@ export class HomePage implements OnInit {
 
   }
 
-  /*
-    Schedule the Local Notification 
+  /**
+   * Schedule the Local Notification 
   */
   async schedule() {
     // let data = await LocalNotifications.schedule({
@@ -50,10 +50,9 @@ export class HomePage implements OnInit {
     // });
 
   }
-  /*
-       creating the new map 
-     */
-
+  /**
+   *  creating the new map 
+   */
   async createMap() {
     this.newMap = await GoogleMap.create({
       id: 'my-cool-map',
@@ -68,22 +67,9 @@ export class HomePage implements OnInit {
       }
     });
 
-    /*
-      If you want to add marker any locations
+    /**
+     * If you want to add marker any locations
     */
-
-
-
-    /*
-        added current location circle or blue dot 
-     */
-    await this.newMap.enableCurrentLocation(true);
-    /*
-      Enabled the traffic layers like (traffic red blue and other color lines)
-    */
-    await this.newMap.enableTrafficLayer(false);
-
-
 
     // const markerId = await this.newMap.addMarkers([
     //   {
@@ -109,6 +95,19 @@ export class HomePage implements OnInit {
     //   animate: true
     // });
 
+    /** 
+     * Added current location circle or blue dot 
+     */
+    await this.newMap.enableCurrentLocation(true);
+    /**
+     * Enabled the traffic layers like (traffic red blue and other color lines)
+    */
+    await this.newMap.enableTrafficLayer(false);
+
+
+
+
+
     // this.newMap.setOnCameraIdleListener((value: any) => {
     //   console.log('herer', value);
     // })
@@ -127,8 +126,8 @@ export class HomePage implements OnInit {
 
 
   getCurrentCoordinates() {
-    /*
-      Get the current location of ur device return the lat lng
+    /**
+     * Get the current location of ur device return the lat lng
     */
 
     this.geolocation.getCurrentPosition().then((resp) => {
@@ -142,8 +141,8 @@ export class HomePage implements OnInit {
     });
   }
 
-  /*
-     Watching the current position of your device in every 10s by geolocation plugins
+  /**
+   * Watching the current position of your device in every 10s by geolocation plugins
   */
   watchPosition() {
     this.wait = this.geolocation.watchPosition({ enableHighAccuracy: true, timeout: 10000 })

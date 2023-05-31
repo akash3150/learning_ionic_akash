@@ -25,17 +25,23 @@ export class NotificationsService {
       }
     });
 
-    //getting the fcm token by this event lisner
+    /** 
+     * getting the fcm token by this event lisner
+     */
     PushNotifications.addListener('registration', (token) => {
       console.log('token here', JSON.stringify(token));
     });
 
-    //if some err while registration
+    /** 
+     * if some err while registration
+     */
     PushNotifications.addListener('registrationError', (err) => {
       console.log(err);
     });
 
-    //when the push notification recieved by firebase
+    /** 
+     * when the push notification recieved by firebase
+     */
     PushNotifications.addListener('pushNotificationReceived', (notifications) => {
       console.log('recieved', JSON.stringify(notifications));
     });
