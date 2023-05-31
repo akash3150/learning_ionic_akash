@@ -11,6 +11,9 @@ import { SplashScreen } from '@capacitor/splash-screen';
 })
 export class AppComponent {
   constructor(private push: NotificationsService) {
+    /**
+     *  Splash screen auto hide after 2s 
+     */
     SplashScreen.show({
       showDuration: 2000,
       autoHide: true,
@@ -43,7 +46,7 @@ export class AppComponent {
     const info = await Device.getId();
 
     //getting device information
-    const value = await Device.getInfo()
+    const value = await Device.getInfo();
     console.log('infooooo', JSON.stringify(info), JSON.stringify(value));
   }
 
