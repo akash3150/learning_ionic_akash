@@ -22,7 +22,9 @@ const FACEBOOK_PERMISSIONS = [
 ];
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Toast } from '@capacitor/toast';
-import { TextZoom } from '@capacitor/text-zoom'
+import { TextZoom } from '@capacitor/text-zoom';
+import { Haptics, ImpactStyle } from '@capacitor/haptics';
+
 
 @Component({
   selector: 'app-tabs',
@@ -256,5 +258,14 @@ export class TabsPage {
     // let a = await TextZoom.set({ value: 2 });
   }
 
+  /**
+   * Vibration added on click
+   */
+  hapticsVibrate = async () => {
+    await Haptics.vibrate();
+  };
 
+  // hapticsImpactLight = async () => {
+  //   await Haptics.impact({ style: ImpactStyle.Light });
+  // };
 }

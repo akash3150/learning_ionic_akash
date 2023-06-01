@@ -9,6 +9,16 @@
 
 <ion-content [fullscreen]="true">
 
-
-
+  <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+    <ion-fab-button (click)="takePicture()">
+      <ion-icon name="camera"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" *ngIf="src">
+        <ion-img [src]="src"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
