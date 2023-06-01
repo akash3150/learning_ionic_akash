@@ -213,7 +213,6 @@ export class TabsPage {
 
   logCurrentNetworkStatus = async () => {
     const status = await Network.getStatus();
-
     console.log('Network status:', JSON.stringify(status));
   };
 
@@ -222,7 +221,6 @@ export class TabsPage {
     const { value } = await ScreenReader.isEnabled();
     console.log('Voice over enabled? ' + value);
     this.sayHello();
-
   };
 
   sayHello = async () => {
