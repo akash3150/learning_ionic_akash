@@ -24,6 +24,7 @@ import { StatusBar, Style } from '@capacitor/status-bar';
 import { Toast } from '@capacitor/toast';
 import { TextZoom } from '@capacitor/text-zoom';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
+import { NativeAudio } from '@awesome-cordova-plugins/native-audio'
 
 
 @Component({
@@ -53,7 +54,6 @@ export class TabsPage {
     //   console.log('Device motion event:', JSON.stringify(event));
     // });
 
-
     StatusBar.setOverlaysWebView({ overlay: true });
 
     Network.addListener('networkStatusChange', status => {
@@ -61,8 +61,6 @@ export class TabsPage {
     });
 
     this.logCurrentNetworkStatus();
-
-
     if (!isPlatform('capacitor')) {
       GoogleAuth.initialize()
     };
@@ -72,7 +70,7 @@ export class TabsPage {
     });
     let permissions = Filesystem.requestPermissions();
     this.writeFile();
-    this.getText()
+    this.getText();
   }
 
 
@@ -266,4 +264,16 @@ export class TabsPage {
   // hapticsImpactLight = async () => {
   //   await Haptics.impact({ style: ImpactStyle.Light });
   // };
+
+  /**
+   *  Music start afterthis function run
+   */
+  runMusic = async () => {
+    let load = await NativeAudio.preloadComplex('uniqueId1', 'assets/song.mp3', 0.5, 1, 0)
+    let data = await NativeAudio.play('uniqueId1');
+    setTimeout(async () => {
+      await NativeAudio.stop('uniqueId1');
+    }, 2 * 60 * 1000);
+  }
 }
+
