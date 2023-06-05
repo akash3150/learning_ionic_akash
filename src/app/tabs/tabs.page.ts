@@ -25,6 +25,9 @@ import { Toast } from '@capacitor/toast';
 import { TextZoom } from '@capacitor/text-zoom';
 import { Haptics, ImpactStyle } from '@capacitor/haptics';
 import { NativeAudio } from '@awesome-cordova-plugins/native-audio'
+import { DocumentScanner, DocumentScannerOptions } from '@awesome-cordova-plugins/document-scanner';
+import { DocumentViewer } from '@awesome-cordova-plugins/document-viewer';
+import { TouchID } from '@awesome-cordova-plugins/touch-id';
 
 
 @Component({
@@ -275,5 +278,38 @@ export class TabsPage {
       await NativeAudio.stop('uniqueId1');
     }, 2 * 60 * 1000);
   }
+
+  /**
+   *  Music start afterthis function run
+   */
+  scanDocuments = async () => {
+    DocumentScanner.scanDoc({ sourceType: 0 })
+      .then((res: any) => console.log('herrerre', res))
+      .catch((error: any) => console.error(error));
+  }
+
+  viewDocument = async () => {
+    DocumentViewer.viewDocument('file:///android_asset/public/assets/sample.pdf', 'application/pdf', {
+      print: { enabled: true },
+      title: 'Title hai ye'
+    })
+  }
+
+  checkFringerprint = async () => {
+    try {
+      let data = await TouchID.isAvailable()
+      console.log('TouchID is available!', JSON.stringify(data))
+    } catch (error) {
+      console.error('TouchID is not available', error)
+    }
+
+
+    // this.touchId.verifyFingerprint('Scan your fingerprint please')
+    //   .then(
+    //     res => console.log('Ok', res),
+    //     err => console.error('Error', err)
+    //   );
+  }
+
 }
 
