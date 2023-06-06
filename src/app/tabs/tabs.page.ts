@@ -28,7 +28,7 @@ import { NativeAudio } from '@awesome-cordova-plugins/native-audio'
 import { DocumentScanner, DocumentScannerOptions } from '@awesome-cordova-plugins/document-scanner';
 import { DocumentViewer } from '@awesome-cordova-plugins/document-viewer';
 import { TouchID } from '@awesome-cordova-plugins/touch-id';
-
+import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
 
 @Component({
   selector: 'app-tabs',
@@ -295,6 +295,10 @@ export class TabsPage {
     })
   }
 
+
+  /**
+   * This is only wroks in the ios and check fringer is checking there any fringerprint in the phone
+   */
   checkFringerprint = async () => {
     try {
       let data = await TouchID.isAvailable()
@@ -304,11 +308,26 @@ export class TabsPage {
     }
 
 
-    // this.touchId.verifyFingerprint('Scan your fingerprint please')
-    //   .then(
-    //     res => console.log('Ok', res),
-    //     err => console.error('Error', err)
-    //   );
+
+  }
+
+  checkFingerprint = async () => {
+    KeychainTouchId.isAvailable()
+      .then((res: any) => {
+        if (res) {
+          this.verifyFringerprint();
+        }
+        console.log(res)
+      })
+      .catch((error: any) => console.error(error));
+  }
+
+
+
+  verifyFringerprint = async () => {
+    KeychainTouchId.verify('akash', 'Please verify urself')
+      .then(res => console.log('Ok', res))
+      .catch((error: any) => console.error(error));
   }
 
 }

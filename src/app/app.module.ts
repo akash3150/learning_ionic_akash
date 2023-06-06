@@ -11,12 +11,15 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { FCM } from '@ionic-native/fcm/ngx';
 import { HttpClientModule } from '@angular/common/http';
+import { Flashlight } from '@ionic-native/flashlight/ngx';
+import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot({
     animated: false
   }), AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [Geolocation, NativeGeocoder, FCM, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Geolocation, NativeGeocoder, FCM, Flashlight, Chooser, BarcodeScanner, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })
