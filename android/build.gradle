@@ -15,9 +15,9 @@ buildscript {
     }
     
 }
-configurations {
-    implementation.exclude group: 'com.google.zxing'
-}
+// configurations {
+//     implementation.exclude group: 'com.google.zxing'
+// }
 
 apply from: "variables.gradle"
 

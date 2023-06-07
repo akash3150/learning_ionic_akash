@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { Camera, CameraResultType } from '@capacitor/camera';
 import { Flashlight } from '@ionic-native/flashlight/ngx';
 import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
-import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+// import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -10,9 +11,12 @@ import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 })
 export class Tab1Page {
 
-  constructor(private flashlight: Flashlight,
+  constructor(
+    private flashlight: Flashlight,
     private chooser: Chooser,
-    private barcodeScanner: BarcodeScanner) { }
+    private filePath: FilePath
+    // private barcodeScanner: BarcodeScanner,
+  ) { }
   isTorch = false;
   src: any = '';
   takePicture = async () => {
@@ -27,6 +31,7 @@ export class Tab1Page {
     });
 
     let imageUrl = image.webPath;
+
     console.log(imageUrl, 'imageUrl');
     // // Can be set to the src of an image now
     this.src = imageUrl;
@@ -52,7 +57,10 @@ export class Tab1Page {
 
   chooseFile = () => {
     this.chooser.getFile({ mimeTypes: 'application/pdf', maxFileSize: 1024 })
-      .then((file: any) => console.log('filesss', file ? file.mediaType : 'canceled'))
+      .then((file: any) => {
+        file ? this.getNativePath(file.uri) : ''
+        console.log('filesss', file ? file.uri : 'canceled')
+      })
       .catch((error: any) => console.error(error));
   }
 
@@ -60,13 +68,26 @@ export class Tab1Page {
     console.log(event.target.files[0]);
   }
 
-  scanCode = () => {
-    this.barcodeScanner.scan({ showTorchButton: true })
-      .then((barcodeData: any) => {
-        console.log('Barcode data', JSON.stringify(barcodeData));
-      }).catch((err: any) => {
-        console.log('Error', err);
-      });
-  }
+  // scanCode = () => {
+  //   this.barcodeScanner.scan({ showTorchButton: true })
+  //     .then((barcodeData: any) => {
+  //       console.log('Barcode data', JSON.stringify(barcodeData));
+  //     }).catch((err: any) => {
+  //       console.log('Error', err);
+  //     });
+  // }
+
+  /**
+   * @param path 
+   *  path to of the file to get native path
+   */
+  getNativePath = (path: any) => {
+    this.filePath.resolveNativePath(path)
+      .then(filePath => console.log(filePath))
+      .catch(err => console.log(err));
+  };
+
+
+
 
 }

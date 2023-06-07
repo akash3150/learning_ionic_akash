@@ -20,15 +20,15 @@
       </ion-button>
     </ion-col>
   </ion-row>
-  <input type="file" accept="application/pdf" id="upload" style="display: none;" (change)="changeListener($event)"
-    #hiddenfileinput />
-  <ion-fab-button for="upload" (click)="hiddenfileinput.click()" class="ion-margin">
+  <!-- <input type="file" accept="application/pdf" id="upload" style="display: none;" (change)="changeListener($event)"
+    #hiddenfileinput /> -->
+  <ion-fab-button for="upload" (click)="chooseFile()" class="ion-margin">
     <ion-icon name="folder-open-outline"></ion-icon>
   </ion-fab-button>
 
 
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
-    <ion-fab-button (click)="scanCode()">
+    <ion-fab-button (click)="takePicture()">
       <ion-icon name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
