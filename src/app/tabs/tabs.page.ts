@@ -29,6 +29,7 @@ import { DocumentScanner, DocumentScannerOptions } from '@awesome-cordova-plugin
 import { DocumentViewer } from '@awesome-cordova-plugins/document-viewer';
 import { TouchID } from '@awesome-cordova-plugins/touch-id';
 import { KeychainTouchId } from '@ionic-native/keychain-touch-id';
+import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
 
 @Component({
   selector: 'app-tabs',
@@ -47,7 +48,8 @@ export class TabsPage {
     private toastController: ToastController,
     private loadingCtrl: LoadingController,
     private router: Router,
-    private http: HttpClient
+    private http: HttpClient,
+    private nativeStorage: NativeStorage
   ) {
     /**
      * Added orientation event for the motion
@@ -328,6 +330,29 @@ export class TabsPage {
     KeychainTouchId.verify('akash', 'Please verify urself')
       .then(res => console.log('Ok', res))
       .catch((error: any) => console.error(error));
+  }
+
+  /**
+   * Set the value in the native storage, we can store the json value in this. 
+   */
+  setValue = async () => {
+    let data = await this.nativeStorage.setItem('myitem', { property: 'value', anotherProperty: 'anotherValue' })
+    console.log('Stored item!');
+  }
+  /**
+     * Remove value from the native storage
+     */
+  removeValue = async () => {
+    let data = await this.nativeStorage.remove('myitem')
+    console.log('Item Removed!');
+  }
+
+  /**
+     * Get value from the native storage
+     */
+  getValue = async () => {
+    let data = await this.nativeStorage.getItem('myitem')
+    console.log('Stored item!', JSON.stringify(data));
   }
 
 }

@@ -56,9 +56,9 @@ export class Tab1Page {
    */
 
   chooseFile = () => {
-    this.chooser.getFile({ mimeTypes: 'application/pdf', maxFileSize: 1024 })
+    this.chooser.getFile()
       .then((file: any) => {
-        file ? this.getNativePath(file.uri) : ''
+        file ? this.getNativePath(file.uri) : '';
         console.log('filesss', file ? file.uri : 'canceled')
       })
       .catch((error: any) => console.error(error));
