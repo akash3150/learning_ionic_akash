@@ -16,6 +16,8 @@ import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 // import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+
+
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot({

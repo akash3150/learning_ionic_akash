@@ -282,7 +282,7 @@ export class TabsPage {
   }
 
   /**
-   *  Music start afterthis function run
+   *  Scan the document
    */
   scanDocuments = async () => {
     DocumentScanner.scanDoc({ sourceType: 0 })
@@ -299,19 +299,8 @@ export class TabsPage {
 
 
   /**
-   * This is only wroks in the ios and check fringer is checking there any fringerprint in the phone
+   *  check fringer is checking there any fringerprint in the phone
    */
-  checkFringerprint = async () => {
-    try {
-      let data = await TouchID.isAvailable()
-      console.log('TouchID is available!', JSON.stringify(data))
-    } catch (error) {
-      console.error('TouchID is not available', error)
-    }
-
-
-
-  }
 
   checkFingerprint = async () => {
     KeychainTouchId.isAvailable()
