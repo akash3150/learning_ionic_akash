@@ -16,6 +16,7 @@ import { Chooser } from '@awesome-cordova-plugins/chooser/ngx';
 import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 // import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
+import { MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { NativeStorage } from '@awesome-cordova-plugins/native-storage/ngx';
   imports: [BrowserModule, IonicModule.forRoot({
     animated: false
   }), AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [Geolocation, NativeGeocoder, FCM, Flashlight, NativeStorage, Chooser, FilePath, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [Geolocation, NativeGeocoder, FCM, Flashlight, MediaCapture, NativeStorage, Chooser, FilePath, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent],
 })

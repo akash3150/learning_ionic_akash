@@ -7,7 +7,8 @@ import { FilePath } from '@awesome-cordova-plugins/file-path/ngx';
 import { FileOpener } from '@ionic-native/file-opener';
 import { File } from '@ionic-native/file';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer';
-import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet'
+import { ActionSheet, ActionSheetButtonStyle } from '@capacitor/action-sheet';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@awesome-cordova-plugins/media-capture/ngx';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -19,6 +20,7 @@ export class Tab1Page {
     private flashlight: Flashlight,
     private chooser: Chooser,
     private filePath: FilePath,
+    private mediaCapture: MediaCapture
     // private barcodeScanner: BarcodeScanner,
   ) { }
   isTorch = false;
@@ -141,12 +143,9 @@ export class Tab1Page {
         console.log(JSON.stringify(data.response.data));
         // success
       }, (err) => {
-        alert(err.message)
-        console.log(JSON.stringify(err.message));
-
+        alert(err.message);
         // error
       })
-
   };
   /**
    * @param path 
@@ -160,4 +159,17 @@ export class Tab1Page {
     });
   }
 
+
+  /**
+   * Media capturing the image or take a picture from the phone
+   */
+  getMedia = async () => {
+    try {
+      let options: CaptureImageOptions = { limit: 1 }
+      let data = await this.mediaCapture.captureImage(options);
+      alert(JSON.stringify(data));
+    } catch (error: any) {
+      alert(error.message);
+    }
+  }
 }
