@@ -266,6 +266,8 @@ export class TabsPage {
     await Haptics.vibrate();
   };
 
+
+
   // hapticsImpactLight = async () => {
   //   await Haptics.impact({ style: ImpactStyle.Light });
   // };
